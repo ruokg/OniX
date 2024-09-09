@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "onix-proyect-un",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
