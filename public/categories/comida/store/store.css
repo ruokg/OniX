@@ -119,6 +119,32 @@ body {
     padding: 0px 25px 40px 25px;
 }
 
+/* map div start*/
+
+/* Estilo para el botón */
+#toggle-button {
+    padding: 10px 20px;
+    background-color: #fff; /* Color de fondo del botón */
+    border: 1px solid #ccc; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    z-index: 1000; /* Asegura que el botón esté por encima del mapa */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Establece la altura y el ancho del mapa */
+#map {
+    height: 450px;
+    width: 450px;
+    position: relative; /* Asegura que el botón se posicione respecto a este contenedor */
+    justify-content: center;
+    align-items: center;
+}
+
+/* map div end*/
+
 /* content card start */
 
 .product-card {
@@ -206,7 +232,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;     
-    padding: 3px;
+    padding: 37px;
 }
 .p_1 {
 	grid-column:3/4;
