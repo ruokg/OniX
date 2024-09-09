@@ -123,12 +123,15 @@ body {
 
 /* Estilo para el botón */
 #toggle-button {
-    padding: 10px 20px;
-    background-color: #fff; /* Color de fondo del botón */
-    border: 1px solid #ccc; /* Borde del botón */
-    border-radius: 5px; /* Bordes redondeados del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    z-index: 1000; /* Asegura que el botón esté por encima del mapa */
+    max-height: 6vh;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FAFAFA;
+    padding: 4px 8px;
+    border: 2px solid #FAFAFA;
+    background-color: #252525;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
