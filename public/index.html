@@ -15,14 +15,14 @@
             <!-- logo start -->
             <div class="logo_container">
                 <a href="./index.html">
-                    <img class="logo" src="./source/onix_logo_txt.png" alt="Onix"> 
+                    <img class="logo" src="./source/onix_logo_txt.png" alt="Onix">
                 </a>
             </div>
             <!-- logo end -->
 
             <!-- title container start -->
             <div class="title_container">
-              
+
             </div>
             <!-- title container end -->
 
@@ -37,9 +37,17 @@
             <!-- login end -->
 
             <!-- account icon start -->
-            <div class="account_container">
-                <img class="account" src="./source/user.png" alt="Account Icon">
-            </div>
+            <section id="logged-out-view">
+                <div class="account_container">
+                    <img class="account" src="./source/user.png" alt="Account Icon">
+                </div>
+            </section>
+
+            <section id="logged-in-view"></section>
+                <div class="account_container">
+                    <img src="" id="userPicture" class="account">
+                </div>
+            </section>
             <!-- account icon end -->
         </header>
         <!-- header end -->
@@ -81,7 +89,7 @@
                 <div class="item artesanias">
                     <div class="brutalist-card">
                         <div class="brutalist-card__header">
-                            <img src="./source/pepega.gif" alt="artesanias" style="width:100%">
+                            <img src="/public/source/artesanias.png" alt="artesanias" style="width:100%">
                         </div>
                         <div class="brutalist-card__actions">
                             <a class="brutalist-card__button brutalist-card__button--mark" href="#">Artesanias</a>
@@ -92,7 +100,7 @@
                 <div class="item comida">
                     <div class="brutalist-card">
                         <div class="brutalist-card__header">
-                            <img src="./source/pepega.gif" alt="comida" style="width:100%">
+                            <img src="/public/source/comida.png" alt="comida" style="width:100%">
                         </div>
                         <div class="brutalist-card__actions">
                             <a class="brutalist-card__button brutalist-card__button--mark" href="./categories/comida/comida.html">Comida</a>
@@ -103,7 +111,7 @@
                 <div class="item papeleria">
                     <div class="brutalist-card">
                         <div class="brutalist-card__header">
-                            <img src="./source/pepega.gif" alt="papeleria" style="width:100%">
+                            <img src="/public/source/papeleria.png" alt="papeleria" style="width:100%">
                         </div>
                         <div class="brutalist-card__actions">
                             <a class="brutalist-card__button brutalist-card__button--mark" href="#">Papeleria</a>
@@ -114,7 +122,7 @@
                 <div class="item varios">
                     <div class="brutalist-card">
                         <div class="brutalist-card__header">
-                            <img src="./source/pepega.gif" alt="varios" style="width:100%">
+                            <img src="/public/source/varios.png" alt="varios" style="width:100%">
                         </div>
                         <div class="brutalist-card__actions">
                             <a class="brutalist-card__button brutalist-card__button--mark" href="#">Varios</a>
@@ -133,7 +141,8 @@
         <!-- footer end -->
     </section>
 
-    <script src="./js/slider.js"></script>
+    <script src="/public//js/slider.js"></script>
+    <script type="module" src="/public/js/fetch.js" defer></script>
 </body>
 </html>
 

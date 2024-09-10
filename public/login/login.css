@@ -5,6 +5,14 @@
   color: var(--font-color);
 }
 
+#logged-out-view{
+  display: block;
+}
+
+#logged-out-view{
+  display: none;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -75,28 +83,6 @@ align-items: center;
 gap: 30px;
 width: 50px;
 height: 20px;
-}
-
-.card-side::before {
-position: absolute;
-content: 'Inicio';
-left: -70px;
-top: 0;
-width: 100px;
-text-decoration: underline;
-color: var(--font-color);
-font-weight: 600;
-}
-
-.card-side::after {
-position: absolute;
-content: 'Registro';
-left: 70px;
-top: 0;
-width: 100px;
-text-decoration: none;
-color: var(--font-color);
-font-weight: 600;
 }
 
 .toggle {
@@ -178,6 +164,7 @@ position: absolute;
 display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
 -webkit-backface-visibility: hidden;
 backface-visibility: hidden;
 background: var(--bg-color);
@@ -265,50 +252,11 @@ transform: translate(3px, 3px);
   align-items: center;
 }
 
-.flip-card__btn-g {
-  width: 275px;
-  height: 40px;
-  border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--font-color);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; 
+.google-btn-logo {
+  width: 25px;  /* Ajusta el tamaño de la imagen */
+  height: auto;  /* Mantiene la proporción de la imagen */
 }
 
-.flip-card__btn a {
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-}
-
-.button {
-  --bg-color: #fff;
-  --main-color: #323232;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-
-.button:active {
-  box-shadow: 0px 0px var(--main-color);
-  transform: translate(3px, 3px);
-}
 
 .icon {
   width: 24px;
