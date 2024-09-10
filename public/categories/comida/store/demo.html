@@ -1,0 +1,120 @@
+_<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/public/source/onix_favicon.png" type="image/x-icon">
+    <title>Onix_Project</title>
+    <link rel="stylesheet" href="/public/categories/comida/store/demo.css">
+</head>
+
+<body>
+    <section class="layout">
+        <!-- header ↓-->
+        <header class="header">
+            <!-- logo start -->
+            <div class="logo_container">
+                <a href="/public/index.html">
+                    <img class="logo" src="/public/source/onix_logo_txt.png" alt="Onix"> 
+                </a>
+            </div>
+            <!-- logo end -->
+
+            <!-- titlte container start -->
+            <div class="title_container">
+                <b>Comida</b>
+            </div>
+            <!-- titlte container end -->
+
+
+            <!-- login start -->
+            <div class="login_container">
+                <div class="login">
+                    <a href="/public/login/login.html">
+                        <button class="login_button">Login / Sign up</button>
+                    </a>
+                </div>
+            </div>
+            <!-- login end -->
+
+            <!-- account icon start -->
+            <section id="logged-out-view">
+                <div class="account_container">
+                    <img class="account" src="/public/source/user.png" alt="Account Icon">
+                </div>
+            </section>
+
+            <section id="logged-in-view"></section>
+                <div class="account_container">
+                    <img src="" id="userPicture" class="account">
+                </div>
+            </section>
+            <!-- account icon end -->
+        </header>
+        <!-- header end -->
+
+        <!-- main start -->
+        <main class="main">                
+            <div class="product photo">
+                <img src="/public/source/prueba.jpg" alt="">
+            </div>
+             <!-- ADD TASK -->
+            <div class="container">
+                <!-- Form Section -->
+                <div class="product-card">
+                <div class="card">
+                    <div class="card-body">
+                    <h1 class="h4">Comentar</h1>
+        
+                    <form id="task-form">
+                        <label for="title">Nombre:</label>
+                        <input
+                        type="text"
+                        id="task-title"
+                        placeholder="Nombre"
+                        autofocus
+                        />
+        
+                        <label for="description">Mensaje:</label>
+                        <textarea
+                        id="task-description"
+                        rows="3"
+                        placeholder="Cuerpo"
+                        ></textarea>
+        
+                        <label for="category">URL Imagen:</label>
+                        <input
+                        type="text"
+                        id="task-category"
+                        placeholder="URL de la imagen"
+                        />
+        
+        
+                        <button id="btn-task-form">Guardar</button>
+                    </form>
+                    </div>
+                </div>
+                </div>
+        
+                <!-- Tasks List Section -->
+                <div class="store_layout" id="tasks-container">
+                <!-- Aquí se generarán los divs de las tareas -->
+                </div>
+            </div>
+
+        </main>
+        <!-- main end -->
+
+        <!-- footer start -->
+        <footer class="footer">
+            <p>Powered by Onix_Team® 2024</p>
+        </footer>
+        <!-- footer end -->
+    </section>
+    <script type="module" src="/public/js/fetch.js" defer></script>
+    <script type="module" src="/public/js/comments.js" defer></script>
+    <script type="module" src="/public/js/demo.js" defer></script>
+</body>
+</html>
+
+<!-- "git init, git add .,  git cz, git push -u origin /jean" -->
