@@ -1,0 +1,357 @@
+_<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/public/source/onix_favicon.png" type="image/x-icon">
+    <title>Onix_Project</title>
+    <link rel="stylesheet" href="/public/categories/store.css">
+</head>
+
+<body>
+    <section class="layout">
+        <!-- header ↓-->
+        <header class="header">
+            <!-- logo start -->
+            <div class="logo_container">
+                <a href="/public/index.html">
+                    <img class="logo" src="/public/source/onix_logo_txt.png" alt="Onix"> 
+                </a>
+            </div>
+            <!-- logo end -->
+
+            <!-- titlte container start -->
+            <div class="title_container">
+                <b>Papeleria</b>
+            </div>
+            <!-- titlte container end -->
+
+
+            <!-- login start -->
+            <div class="login_container">
+                <div class="login">
+                    <a href="/public/login/login.html">
+                        <button class="login_button">Login / Sign up</button>
+                    </a>
+                </div>
+            </div>
+            <!-- login end -->
+
+            <!-- account icon start -->
+            <div class="account_container">
+                <img class="account" src="/public/source/user.png">
+            </div>
+            <!-- account icon end -->
+        </header>
+        <!-- header end -->
+
+        <!-- main start -->
+        <main class="main">                
+            
+            <div class="product photo">
+                <img src="/public/source/prueba.jpg" alt="">
+            </div>
+
+            <div class="product_layout">
+                <div class="product map">
+                    <button id="toggle-button">Mostrar Ruta</button>
+                    <div id="map"></div>
+                    <script>
+                        // Referencia al botón de alternar
+                        const toggleButton = document.getElementById('toggle-button');
+                        let isRutaActive = false; // Estado inicial, empieza con solo la posición
+                        let map; // Variable para almacenar la instancia del mapa
+                        let directionsService;
+                        let directionsRenderer;
+                  
+                        // Inicializar el mapa con solo la posición
+                        function initPosicion() {
+                          const mapOptions = {
+                            zoom: 16,
+                            center: { lat:  4.6341906094948495,  lng:  -74.0844748843875}, // Posición fija
+                            mapId: "DEMO_MAP_ID",
+                          };
+                          map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                  
+                          const fixedMarker = new google.maps.Marker({
+                            position: { lat:  4.6341906094948495,  lng:  -74.0844748843875}, // Posición fija
+                            map: map,
+                            title: "Nacho",
+                          });
+                        }
+                  
+                        // Inicializar el mapa con la ruta
+                        async function initRuta() {
+                          const fixedPosition = { lat:  4.6341906094948495,  lng:  -74.0844748843875}; // Posición fija
+                  
+                          // Inicializar el mapa con las bibliotecas necesarias
+                          //@ts-ignore
+                          const { Map } = await google.maps.importLibrary("maps");
+                          const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                  
+                          map = new Map(document.getElementById("map"), {
+                            zoom: 16,
+                            center: fixedPosition,
+                            mapId: "DEMO_MAP_ID",
+                          });
+                  
+                          const fixedMarker = new AdvancedMarkerElement({
+                            map: map,
+                            position: fixedPosition,
+                            title: "Nacho",
+                          });
+                  
+                          // Inicializar los servicios de direcciones
+                          directionsService = new google.maps.DirectionsService();
+                          directionsRenderer = new google.maps.DirectionsRenderer({
+                            suppressMarkers: true, // Ocultar los marcadores predeterminados
+                          });
+                          directionsRenderer.setMap(map);
+                  
+                          const bounds = new google.maps.LatLngBounds();
+                          bounds.extend(fixedPosition);
+                  
+                          // Obtener la ubicación del usuario
+                          if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(
+                              (position) => {
+                                const userLocation = {
+                                  lat: position.coords.latitude,
+                                  lng: position.coords.longitude,
+                                };
+                  
+                                // Icono azul personalizado para la ubicación del usuario
+                                const blueIcon = {
+                                  url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                                };
+                  
+                                // Marcador para la ubicación del usuario
+                                const userMarker = new google.maps.Marker({
+                                  map: map,
+                                  position: userLocation,
+                                  title: "Tu ubicación",
+                                  icon: blueIcon,
+                                });
+                  
+                                bounds.extend(userLocation);
+                                map.fitBounds(bounds);
+                  
+                                // Calcular la ruta desde la ubicación del usuario hasta la posición fija
+                                calculateAndDisplayRoute(userLocation, fixedPosition);
+                              },
+                              () => {
+                                alert("No se pudo obtener tu ubicación. Asegúrate de otorgar permisos.");
+                              }
+                            );
+                          } else {
+                            alert("La geolocalización no está soportada por este navegador.");
+                          }
+                        }
+                  
+                        // Función para calcular y mostrar la ruta
+                        function calculateAndDisplayRoute(userLocation, fixedPosition) {
+                          directionsService.route(
+                            {
+                              origin: userLocation,
+                              destination: fixedPosition,
+                              travelMode: google.maps.TravelMode.WALKING,
+                            },
+                            (response, status) => {
+                              if (status === "OK") {
+                                directionsRenderer.setDirections(response);
+                              } else {
+                                window.alert("No se pudo encontrar la ruta: " + status);
+                              }
+                            }
+                          );
+                        }
+                  
+                        // Función para gestionar el cambio entre mapas
+                        toggleButton.addEventListener('click', function () {
+                          // Eliminar el mapa actual
+                          document.getElementById("map").innerHTML = "";
+                  
+                          // Alternar entre los modos de ruta y solo posición
+                          if (isRutaActive) {
+                            initPosicion();
+                            toggleButton.textContent = "Mostrar Ruta";
+                          } else {
+                            initRuta();
+                            toggleButton.textContent = "Mostrar Solo Posición";
+                          }
+                          isRutaActive = !isRutaActive;
+                        });
+                  
+                        // Cargar el mapa por defecto al inicio (solo posición)
+                        window.onload = function () {
+                          initPosicion();
+                        };
+                      </script>
+                  
+                      <!-- Preloader de Google Maps API -->
+                      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFfCtrPH2Du_mSlfIXpZHtDJ83ya19OhE"></script>
+                </div>
+
+                <div class="product p_1">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_2">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_3">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_4">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product p_5">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_6">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_7">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_8">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product p_9">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product p_10">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product p_11">
+                    <div class="product-card">
+                        <div class="product-card__header">
+                            <img src="/public/source/Imagenes Onix/Papelería/Productos/Caculo de una variable.jpeg" alt="">
+                        </div>
+                        <div class="product-card__actions">
+                            <a class="product-card_name">Calculo diferencial en una variable</a>
+                            <br>
+                            <a class="product-card_price">$ 150.000</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product comments">
+                    1
+                </div>
+
+            </div>
+    
+        </main>
+        <!-- main end -->
+
+        <!-- footer start -->
+        <footer class="footer">
+            <p>Powered by Onix_Team® 2024</p>
+        </footer>
+        <!-- footer end -->
+    </section>
+
+</body>
+</html>
+
+<!-- "git init, git add .,  git cz, git push -u origin /jean" -->
