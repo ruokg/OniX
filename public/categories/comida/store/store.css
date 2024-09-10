@@ -139,8 +139,8 @@ body {
 
 /* Establece la altura y el ancho del mapa */
 #map {
-    height: 450px;
-    width: 450px;
+    height: 95%;
+    width: 100%;
     position: relative; /* Asegura que el botón se posicione respecto a este contenedor */
     justify-content: center;
     align-items: center;
