@@ -127,6 +127,35 @@ body {
     padding: 0px 25px 40px 25px;
 }
 
+/* map div start*/
+
+/* Estilo para el botón */
+#toggle-button {
+    max-height: 6vh;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FAFAFA;
+    padding: 4px 8px;
+    border: 2px solid #FAFAFA;
+    background-color: #252525;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Establece la altura y el ancho del mapa */
+#map {
+    height: 95%;
+    width: 100%;
+    position: relative; /* Asegura que el botón se posicione respecto a este contenedor */
+    justify-content: center;
+    align-items: center;
+}
+
+/* map div end*/
+
 /* content card start */
 
 .product-card {
@@ -231,7 +260,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;     
-    padding: 3px;
+    padding: 37px;
 }
 .p_1 {
 	grid-column:3/4;
