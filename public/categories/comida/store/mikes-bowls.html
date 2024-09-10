@@ -38,9 +38,17 @@ _<!DOCTYPE html>
             <!-- login end -->
 
             <!-- account icon start -->
-            <div class="account_container">
-                <img class="account" src="/public/source/user.png">
-            </div>
+            <section id="logged-out-view">
+                <div class="account_container">
+                    <img class="account" src="/public/source/user.png" alt="Account Icon">
+                </div>
+            </section>
+
+            <section id="logged-in-view"></section>
+                <div class="account_container">
+                    <img src="" id="userPicture" class="account">
+                </div>
+            </section>
             <!-- account icon end -->
         </header>
         <!-- header end -->
@@ -199,11 +207,35 @@ _<!DOCTYPE html>
                         </div>
                     </div>
                 </div>
-                
-                <div class="product comments">
-                    1
-                </div>
+            </div>
 
+            <div class="product">
+                 <!-- ADD TASK -->
+                <div class="container">
+                    <!-- Form Section -->
+                    <div class="product-card-com">
+                    <div class="card">
+                        <div class="card-body">
+                        <h1 class="h4">Comentar</h1>
+            
+                        <form id="task-form">
+                            <label for="title">Nombre:</label>
+                            <input type="text" id="task-title" placeholder="Nombre" autofocus/>
+            
+                            <label for="description">Mensaje:</label>
+                            <textarea id="task-description" rows="3" placeholder="Cuerpo"></textarea>
+            
+                            <button id="btn-task-form">Guardar</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+            
+                    <!-- Tasks List Section -->
+                    <div class="product-card-com" id="tasks-container">
+                    <!-- Aquí se generarán los divs de las tareas -->
+                    </div>
+                </div>
             </div>
     
         </main>
@@ -215,7 +247,8 @@ _<!DOCTYPE html>
         </footer>
         <!-- footer end -->
     </section>
-
+    <script type="module" src="/public/js/fetch.js" defer></script>
+    <script type="module" src="/public/js/comments.js" defer></script>
 </body>
 </html>
 

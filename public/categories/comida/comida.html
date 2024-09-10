@@ -38,9 +38,17 @@
             <!-- login end -->
 
             <!-- account icon start -->
-            <div class="account_container">
-                <img class="account" src="/public/source/user.png">
-            </div>
+            <section id="logged-out-view">
+                <div class="account_container">
+                    <img class="account" src="/public/source/user.png" alt="Account Icon">
+                </div>
+            </section>
+
+            <section id="logged-in-view"></section>
+                <div class="account_container">
+                    <img src="" id="userPicture" class="account">
+                </div>
+            </section>
             <!-- account icon end -->
         </header>
         <!-- header end -->
@@ -91,26 +99,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="item Comida">
-                    <div class="brutalist-card">
-                        <div class="brutalist-card__header">
-                            <img src="/public/source/pepega.gif" alt="Comida" style="width:100%">
-                        </div>
-                        <div class="brutalist-card__actions">
-                          <a class="brutalist-card__button brutalist-card__button--mark" href="#">Chaza_5</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item Comida">
-                    <div class="brutalist-card">
-                        <div class="brutalist-card__header">
-                            <img src="/public/source/pepega.gif" alt="Comida" style="width:100%">
-                        </div>
-                        <div class="brutalist-card__actions">
-                          <a class="brutalist-card__button brutalist-card__button--mark" href="#">Chaza_6</a>
-                        </div>
-                    </div>
-                </div>
               </section>
             <!-- catregory panel end -->
         </main>
@@ -122,6 +110,8 @@
         </footer>
         <!-- footer end -->
     </section>
+
+    <script type="module" src="/public/js/fetch.js" defer></script>
 
 </body>
 </html>

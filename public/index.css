@@ -88,6 +88,14 @@ body {
     transform: translate(3px, 3px);
 }
 
+#logged-out-view{
+    display: block;
+  }
+  
+#logged-out-view{
+    display: none;
+  }
+
 .account_container {
     width: 3vw;
     height: 7vh;
@@ -101,7 +109,6 @@ body {
     max-width: 2.5vw;
     border-radius: 50%;
     background-color: #fafafa;
-    cursor: pointer;
 }
 
 /* account button end */
